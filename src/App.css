@@ -1,0 +1,17 @@
+.propic{
+  height:120px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.name{
+  
+  font-weight: normal;
+}
+.bold{
+  color: crimson;
+  font-weight: bolder;
+}
+.sec1{
+  text-align: center;
+}
