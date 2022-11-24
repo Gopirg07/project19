@@ -1,4 +1,53 @@
-.propic{
+.movie-poster {
+  height: 640px;
+  width: 100%;
+  /* zoom  in */
+  object-fit: cover;
+}
+
+.movie-name {
+  font-size: 24px;
+  margin: 0;
+}
+
+.movie-specs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.movie-container {
+  background-color: #e1e1e1;
+  width: 340px;
+  padding: 10px;
+}
+
+/* RAM */
+.movie-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1rem;
+  justify-items: center;
+}
+ 
+
+.addmovie-outer{ 
+  margin: 10px auto ;
+  padding: 10px;
+  gap: 10px;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+}
+ 
+
+
+
+
+/* .propic{
   height:120px;
   aspect-ratio: 1/1;
   border-radius: 50%;
@@ -14,4 +63,4 @@
 }
 .sec1{
   text-align: center;
-}
+} */
