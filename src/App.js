@@ -12,15 +12,14 @@ function App() {
   // ]
 
   return (
-    <div className="App">  
-    {/* <Movielist/> */}
+    <div className="App">   
 
     <ul>
       <li>
       <Link to={"/"}>Home</Link>
       </li>
       <li>
-      <Link to={"/Moviess"}>Moviess</Link>
+      <Link to={"/Movie"}>Movie</Link>
       </li>
       <li>
       <Link to={"/Add"}>Add</Link>
@@ -28,7 +27,7 @@ function App() {
     </ul>
     <Routes>  
         <Route path="/" element={<Home />} /> 
-        <Route path="/Moviess" element={<Movielist />} /> 
+        <Route path="/Movie" element={<Movielist />} /> 
         <Route path="/Films" element={<Movielist />} /> 
         <Route path="/Add" element={<Addcolor />} /> 
       </Routes>
@@ -69,6 +68,7 @@ function Colorbox({colorr}){
     background:colorr,
     height:"50px",
     width:"250px",
+    margin:"15px 0px"
   }
   return(
     <div style={styles}> </div>

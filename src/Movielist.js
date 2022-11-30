@@ -89,8 +89,10 @@ export function Movielist() {
       </div>
 
       <div class="movie-list"> 
-        {movieList.map((m) => (
-          <Movie movie={m} />
+        {movieList.map((m,index) => (
+          <div key={index}> 
+            <Movie movie={m} id={index} />
+          </div>
         ))}
       </div>
     </div>
