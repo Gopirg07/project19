@@ -2,8 +2,11 @@ import { Movie } from "./Movie";
 import * as React from 'react';  
 import { useEffect } from "react";
 import { useState } from "react";
-import { IconButton } from "@mui/material";
+import { IconButton } from "@mui/material"; 
 import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import { useNavigate } from "react-router-dom";
+
 
 export function Movielist() {  
 
@@ -21,6 +24,8 @@ export function Movielist() {
     fetch(`https://638f3a564ddca317d7f213a2.mockapi.io/movie/${id}`,
     {method:"DELETE"}).then((data)=>getMovies());
   }
+
+  const navigate=useNavigate()
   return (  
     <div>  
       <div className="movie-list"> 
@@ -37,7 +42,17 @@ export function Movielist() {
                 > 
                 <DeleteIcon />
                 </IconButton> 
-              } 
+              }  
+              editb={
+                <IconButton 
+                aria-label="delete"
+                color="secondary" 
+                sx={{marginLeft:"auto"}}
+                onClick={()=>navigate(`/Movie/edit/${mv.id}`)}
+                >
+                  <EditIcon/>
+                </IconButton>
+              }
             />
           </div>
         ))}

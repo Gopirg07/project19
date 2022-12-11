@@ -7,14 +7,34 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
  
 const movieValidationSchema = yup.object({
-name:yup.string().required(),
-poster:yup.string().required().min(5),
-rating:yup.number().required().min(0).max(10),
-summary:yup.string().required().min(20),
-trailer:yup.string().required().min(10).url(),
+name:yup
+.string()
+.required("name field cant be empty"),
+
+poster:yup
+.string()
+.required("poster field cant be empty")
+.min(5,"Try Something Bigger 👍"),
+
+rating:yup
+.number()
+.required("rating field cant be empty")
+.min(0,"Try Something Bigger 👍")
+.max(10),
+
+summary:yup
+.string()
+.required("summary field cant be empty")
+.min(20,"Try Something Bigger 👍"),
+
+trailer:yup
+.string()
+.required("trailer field cant be empty")
+.min(10,"Try Something Bigger 👍")
+.url(),
 })
 
-export function AddMovie({movieList,setMovieList}){ 
+export function AddMovie(){ 
 
   const { handleSubmit,values,handleChange,handleBlur,touched,errors} = useFormik({
     initialValues: {
@@ -49,9 +69,11 @@ const addmovie=(newMovies)=>{
         value={values.name}
         name="name"
         onChange={handleChange}
-        onBlur={handleBlur}
+        onBlur={handleBlur} 
+        error={touched.name && errors.name}
+        helperText={touched.name && errors.name ? errors.name : null} 
         />
-        {touched.name && errors.name ? errors.name : null}
+        
         
         <TextField id="outlined-basic" 
         label="Enter the Movie poster" 
@@ -60,8 +82,10 @@ const addmovie=(newMovies)=>{
         name="poster"
         onChange={handleChange}
         onBlur={handleBlur}
+        error={touched.poster && errors.poster}
+        helperText={touched.poster && errors.poster ? errors.poster : null}
         />
-        {touched.poster && errors.poster ? errors.poster : null}
+        
         
         <TextField id="outlined-basic" 
         label="Enter the Movie rating" 
@@ -70,8 +94,10 @@ const addmovie=(newMovies)=>{
         name="rating"
         onChange={handleChange}
         onBlur={handleBlur}
+        error={touched.rating && errors.rating}
+        helperText={touched.rating && errors.rating ? errors.rating : null}
         />
-        {touched.rating && errors.rating ? errors.rating : null}
+        
         
         <TextField id="outlined-basic" 
         label="Enter the Movie summary" 
@@ -80,8 +106,10 @@ const addmovie=(newMovies)=>{
         name="summary"
         onChange={handleChange}
         onBlur={handleBlur}
+        error={touched.summary && errors.summary}
+        helperText={touched.summary && errors.summary ? errors.summary : null}
         />
-        {touched.summary && errors.summary ? errors.summary : null}
+        
         
         <TextField id="outlined-basic" 
         label="Enter the Movie Trailer" 
@@ -90,8 +118,10 @@ const addmovie=(newMovies)=>{
         name="trailer"
         onChange={handleChange}
         onBlur={handleBlur}
+        error={touched.trailer && errors.trailer}
+        helperText={touched.trailer && errors.trailer ? errors.trailer : null}
         />
-        {touched.trailer && errors.trailer ? errors.trailer : null}
+        
         
         <Button variant="contained" type="submit">
         Add movie</Button>

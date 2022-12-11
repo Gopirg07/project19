@@ -19,6 +19,7 @@ import { MovieLists } from './MovieLists';
 import { Addcolor } from './Addcolor'; 
 import { Home } from './Home';
 import { Basicform } from './Basicform';
+import { EditMovie } from './EditMovie';
 
 function App() {  
   const [movieList,setMovieList] = useState([]);
@@ -64,6 +65,7 @@ function App() {
         <Route path="/AddMovie" element={<AddMovie movielists={movieList} setMovieList={setMovieList}/>} /> 
         <Route path="/ColorGame" element={<Addcolor />} /> 
         <Route path="/Movie/:abc" element={<MovieLists movielists={movieList}/>} /> 
+        <Route path="/Movie/edit/:abc" element={<EditMovie/>} /> 
         <Route path="/Basic-form" element={<Basicform />} /> 
         
       </Routes> 
@@ -72,5 +74,4 @@ function App() {
     </ThemeProvider>
   );
 } 
-
 export default App;
