@@ -10,7 +10,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { Counter } from "./Counter.1";
 
-export function Movie({ movie, id, delb ,editb}) {
+export function Movie({ movie, id, delb, editb }) {
   const [show, setShow] = useState(false);
   const styles = {
     color: movie.rating >= 8 ? "green" : "red"
@@ -30,11 +30,13 @@ export function Movie({ movie, id, delb ,editb}) {
                 {show ? <ExpandMoreIcon /> : <ExpandLessIcon />}
               </IconButton>
 
-              <InfoIcon
-                color="primary"
-                onClick={() => navigate(`/Movie/${id}`)}
-              >
-              </InfoIcon>
+              <IconButton>
+                <InfoIcon
+                  color="primary"
+                  onClick={() => navigate(`/Movie/${id}`)}
+                >
+                </InfoIcon>
+              </IconButton>
             </h2>
             <p className='movie-rating' style={styles}>{movie.rating}</p>
           </div>
@@ -43,7 +45,7 @@ export function Movie({ movie, id, delb ,editb}) {
         </CardContent>
         <CardActions>
           <Counter />{editb}
-           {delb} 
+          {delb}
         </CardActions>
       </Card>
     </div>
