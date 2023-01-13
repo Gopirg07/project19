@@ -30,12 +30,10 @@ export function Movie({ movie, id, delb, editb }) {
                 {show ? <ExpandMoreIcon /> : <ExpandLessIcon />}
               </IconButton>
 
-              <IconButton>
-                <InfoIcon
-                  color="primary"
-                  onClick={() => navigate(`/Movie/${id}`)}
-                >
-                </InfoIcon>
+              <IconButton
+              color="primary"
+              onClick={() => navigate(`/Movie/${id}`)}>
+                <InfoIcon/> 
               </IconButton>
             </h2>
             <p className='movie-rating' style={styles}>{movie.rating}</p>
