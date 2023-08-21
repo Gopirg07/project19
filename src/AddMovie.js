@@ -53,12 +53,11 @@ export function AddMovie(){
   }
 });
 const addmovie=(newMovies)=>{
-  fetch(`${API}/movie`,{
+  fetch(`${API}/movie/addmovie`,{
     method:"POST",
     body:JSON.stringify(newMovies),
     headers:{ "Content-type" : "application/json" }
-  }).then(()=>navigate("/Movie"));
-  
+  }).then(()=>navigate("/Movie")); 
 }
 
   const navigate = useNavigate();
