@@ -5,7 +5,9 @@ import TextField from '@mui/material/TextField';
 import { useNavigate } from "react-router-dom";
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { API } from "./global";
+import { url } from "./global";
+import { toast } from "react-toastify";
+import axios from "axios";
 
  
 const movieValidationSchema = yup.object({
@@ -49,16 +51,48 @@ export function AddMovie(){
     validationSchema: movieValidationSchema,
     onSubmit: (newMovies) => {
       console.log("Form Values Are", newMovies);
-      addmovie(newMovies);
+      // addmovie(newMovies);
+      addmovi(newMovies)
   }
 });
+
+ 
 const addmovie=(newMovies)=>{
-  fetch(`${API}/movie/addmovie`,{
+  fetch(`${url}/movie/addmovie`,{
     method:"POST",
     body:JSON.stringify(newMovies),
     headers:{ "Content-type" : "application/json" }
   }).then(()=>navigate("/Movie")); 
 }
+
+// try {
+//   let res=await axios.post(`${url}/users/signUp`,payload);
+//   console.log(res); 
+//   localStorage.setItem("token",res.data.token)
+//   toast.success(res.data.message)
+//   setSent(!sent)
+//   // navigate("/signin")
+// } catch (err) {
+//   toast.error(err.response.data.message)
+// }
+// }
+
+const addmovi=async (newMovies)=>{
+
+  let {name,poster,rating,summary,trailer}=newMovies
+  let payload={name,poster,rating,summary,trailer}
+  console.log("this is PAYLOAD",payload);
+  try { 
+    let res=await axios.post(`${url}/movies/addMovieReview`,payload)
+    console.log(res);
+    toast.success(res.data.message)
+  } catch (err) {
+    toast.error(err.response.data.message)
+  }
+}
+
+
+
 
   const navigate = useNavigate();
 

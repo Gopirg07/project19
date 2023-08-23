@@ -6,7 +6,7 @@ import { IconButton } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from "react-router-dom";
-import { API } from "./global";
+import { url } from "./global";
 
 
 export function Movielist() {  
@@ -14,7 +14,7 @@ export function Movielist() {
  const [movieList,setMovieList] = useState([]);
 
   const getMovies= ()=>{
-    fetch(`${API}/movie/`,{method:"GET"})
+    fetch(`${url}/movies/`,{method:"GET"})
     .then((data)=>data.json())
     .then((data1)=>setMovieList(data1));
   }
@@ -22,7 +22,7 @@ export function Movielist() {
   useEffect(()=> getMovies(),[])
 
   const deletemovie= (id)=>{
-    fetch(`${API}/movie/${id}`,
+    fetch(`${url}/movie/${id}`,
     {method:"DELETE"}).then((data)=>getMovies());
   }
 

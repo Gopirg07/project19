@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useEffect } from "react";
-import { API } from "./global.js";
+import { url } from "./global.js";
  
 const movieValidationSchema = yup.object({
 name:yup
@@ -43,7 +43,7 @@ export function EditMovie(){
   const [movie,setMovie] =useState(null);
 
   useEffect(()=>{
-    fetch(`${API}/movie/${abc}`,{method:"GET"})
+    fetch(`${url}/movie/${abc}`,{method:"GET"})
     .then((data)=>data.json())
     .then((mv)=>setMovie(mv));
   },[]) 
@@ -70,7 +70,7 @@ function EditFormMovie({movie}){
   }
 });
 const Editmovie=(editMovies)=>{ 
-  fetch(`${API}/movie/${movie.id}`,{
+  fetch(`${url}/movie/${movie.id}`,{
     method:"PUT",
     body:JSON.stringify(editMovies),
     headers:{ "Content-type" : "application/json" }

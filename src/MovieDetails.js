@@ -4,7 +4,7 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import * as React from 'react';
 import { useState } from "react";
 import { useEffect } from "react";
-import { API } from "./global";
+import { url } from "./global";
 
 export function MovieLists() {
   const { abc } = useParams();
@@ -13,7 +13,7 @@ export function MovieLists() {
   const [movie,setMovie] =useState([]);
 
   useEffect(()=>{
-    fetch(`${API}/movie/${abc}`,{method:"GET"})
+    fetch(`${url}/movie/${abc}`,{method:"GET"})
     .then((data)=>data.json())
     .then((mv)=>setMovie(mv));
   },[]) 
