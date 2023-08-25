@@ -1,77 +1,41 @@
 import './App.css';
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { Routes, Route, Link, useNavigate, Navigate } from "react-router-dom";
 import { useState } from "react"; 
-import { Movielist } from './Movielist';
-import { AddMovie } from './AddMovie';
-import Button from '@mui/material/Button';
+import { Movielist, Movielists } from './Components/Movielist';
+import { AddMovie } from './Components/AddMovie';
 
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar'; 
-import Toolbar from '@mui/material/Toolbar'; 
 
-import { ThemeProvider, createTheme } from '@mui/material/styles'; 
-
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
- 
-import Paper from '@mui/material/Paper'; 
-import { MovieLists } from './MovieLists';
-import { Addcolor } from './Addcolor'; 
-import { Home } from './Home';
-import { Basicform } from './Basicform';
-import { EditMovie } from './EditMovie';
+import { Addcolor } from './Addcolor';  
+import { EditMovie } from './Components/EditMovie';
+import { MovieDetail } from './Components/MovieDetails';
+import Signin from './Components/Signin';
+import Signup from './Components/Signup';
+import Activation from './Components/Activation';
+import ForgotPassword from './Components/Forget';
+import ResetPassword from './Components/ResetPassword';
+import { Home } from './Components/Home';
 
 function App() {  
-  const [movieList,setMovieList] = useState([]);
-  
-  const navigate=useNavigate() 
-
-  const [mode,setMode]=useState("dark")
-
-  const darkTheme = createTheme({
-    palette: {
-      mode: mode,
-    },
-  });
-
+  const [movieList,setMovieList] = useState([]); 
 
   return ( 
-    <ThemeProvider theme={darkTheme}>
-      <Paper style={{minHeight:"100vh",borderRadius:"0"}} elevation={4} >
-    <div className="App">   
-      <AppBar position="static">
-        <Toolbar> 
-          <Button color="inherit" onClick={()=>navigate("/")}>     Home</Button>
-          <Button color="inherit" onClick={()=>navigate("/Movie")}>Movie</Button>
-          <Button color="inherit" onClick={()=>navigate("/AddMovie")}>Add Movie</Button>
-          <Button color="inherit" onClick={()=>navigate("/ColorGame")}>Color Game</Button>
-          {/* <Button color="inherit" onClick={()=>navigate("/Basic-form")}>Basicform</Button> */}
+    <div className="App">    
+      <Routes>   
+        <Route path="/signin" element={<Signin/>}/>
+        <Route path="/signup" element={<Signup/>}/>
+        <Route path="/signUpActivation/:id" element={<Activation/>} />
+        <Route path="/forget" element={<ForgotPassword/>}/>
+        <Route path="/reset-password/:id" element={<ResetPassword/>} />
 
-          <Button 
-          color="inherit" 
-          sx={{marginLeft:"auto"}}
-          startIcon={mode=="light"? <Brightness4Icon /> : <Brightness7Icon />}
-          onClick={()=> setMode(mode=="light"? "dark":"light" ) }
-          >
-            {mode=="light"? "dark":"light"}mode
-          </Button>
-        </Toolbar>
-        
-      </AppBar>
-       
-    <Routes>  
-        <Route path="/" element={<Home />} /> 
-        <Route path="/Movie" element={<Movielist />} />  
-        <Route path="/AddMovie" element={<AddMovie movielists={movieList} setMovieList={setMovieList}/>} /> 
-        <Route path="/ColorGame" element={<Addcolor />} /> 
-        <Route path="/Movie/:abc" element={<MovieLists movielists={movieList}/>} /> 
-        <Route path="/Movie/edit/:abc" element={<EditMovie/>} /> 
-        <Route path="/Basic-form" element={<Basicform />} /> 
-        
+        <Route path="/" element={<Home/>}/> 
+        <Route path="/*" element={<Navigate to="/signin"/>}/> 
+        <Route path="/Movie" element={<Movielists />} />  
+        <Route path="/AddMovie" element={<AddMovie movielists={movieList} setMovieList={setMovieList}/>} />  
+        <Route path="/Movie/:abc" element={<MovieDetail movielists={movieList}/>} /> 
+        <Route path="/Movie/edit/:abc" element={<EditMovie/>} />   
       </Routes> 
-    </div>
-    </Paper>
-    </ThemeProvider>
+    </div> 
   );
 } 
 export default App;
